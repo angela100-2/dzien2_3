@@ -20,6 +20,7 @@ async function handleSubmit(e) {
     <img src="/logo2.svg" alt="DFINITY logo" />
     <br />
     <br />
+    <h1 class="text-blue-600">hello</h1>
     <form action="#" @submit="handleSubmit">
       <label for="name">Enter your name and a number: &nbsp;</label>
       <input id="name" alt="Name" type="text" />
