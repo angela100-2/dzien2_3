@@ -5,8 +5,10 @@
             <button @click="pobierzWpisy" class="bg-blue-600 rounded text-white p-4">Odśwież</button>
         </div>
         <div class="grid mx-6 gap-4 my-4">
-            <div v-for="wpis in wpisy" class="drop-shadow-xl bg-stone-300 p-4">
+            <div v-for="(wpis, index) in wpisy" class="drop-shadow-xl bg-stone-300 p-4">
+                <p>id: {{ index }}</p>
                 <p>{{ wpis }}</p>
+                <button @click="deleteWpis(index)" class="bg-blue-600 rounded text-white p-4">Usuń wpis</button>
             </div>
         </div>
         <div class="flex justify-center flex-col">
@@ -28,6 +30,11 @@ import { dzien2_3_backend } from 'declarations/dzien2_3-backend/index';
         methods: {
             async dodajWpis() {
                 await dzien2_3_backend.dodaj_wpis(this.nowyBlog);
+                await this.pobierzWpisy();
+            },
+            async deleteWpis(index) {
+                await dzien2_3_backend.usun_wpis(index);
+                await this.pobierzWpisy();
             },
             async pobierzWpisy() {
                 this.wpisy = await dzien2_3_backend.odczytaj_wpisy();
