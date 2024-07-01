@@ -9,6 +9,8 @@
                 <p>id: {{ index }}</p>
                 <p>{{ wpis }}</p>
                 <button @click="deleteWpis(index)" class="bg-blue-600 rounded text-white p-4">Usuń wpis</button>
+                <button @click="editWpis(index)" class="bg-blue-600 rounded text-white p-4 m-2">Edytuj wpis</button>
+                <input v-model="nowyBlog" type="text" class="border-2 border-blue-600 p-4">
             </div>
         </div>
         <div class="flex justify-center flex-col">
@@ -34,6 +36,10 @@ import { dzien2_3_backend } from 'declarations/dzien2_3-backend/index';
             },
             async deleteWpis(index) {
                 await dzien2_3_backend.usun_wpis(index);
+                await this.pobierzWpisy();
+            },
+            async editWpis(index) {
+                await dzien2_3_backend.edytuj_wpis(index, this.nowyBlog);
                 await this.pobierzWpisy();
             },
             async pobierzWpisy() {
