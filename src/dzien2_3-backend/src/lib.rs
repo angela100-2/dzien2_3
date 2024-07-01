@@ -29,3 +29,13 @@ fn usun_wpis(id_wpis: usize) {
         wpisy.borrow_mut().remove(id_wpis)
     });
 }
+
+#[ic_cdk::update]
+fn edytuj_wpis(id_wpis: usize, nowy_wpis: String) {
+    WPISY.with(|wpisy| {
+        let mut binding = wpisy.borrow_mut();
+        let wpis = binding.get_mut(id_wpis);
+        let stary_wpis = wpis.unwrap();
+        *stary_wpis = nowy_wpis;
+    });
+}
