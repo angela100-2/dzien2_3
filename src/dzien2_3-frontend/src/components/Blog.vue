@@ -1,6 +1,6 @@
 <template>
     <div>
-        <button @click="pobierzWpisy">Pobierz wpisy</button>
+        <button @click="pobierzWpisy">Odśwież</button>
         siema blog
         {{ wpisy }}
         <input v-model="nowyBlog" type="text">

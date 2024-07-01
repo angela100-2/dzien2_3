@@ -22,3 +22,10 @@ fn odczytaj_wpisy() -> Vec<String> {
         wpisy.borrow().clone()
     })
 }
+
+#[ic_cdk::update]
+fn usun_wpis(id_wpis: usize) {
+    WPISY.with(|wpisy| {
+        wpisy.borrow_mut().remove(id_wpis)
+    });
+}
