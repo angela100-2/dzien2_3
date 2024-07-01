@@ -1,7 +1,7 @@
 <template>
     <div>
+        <h2 class="text-blue-600">Wpisy na bloga:</h2>
         <button @click="pobierzWpisy">Odśwież</button>
-        siema blog
         {{ wpisy }}
         <input v-model="nowyBlog" type="text">
         <button @click="dodajWpis">Dodaj wpis</button>
@@ -24,6 +24,9 @@ import { dzien2_3_backend } from 'declarations/dzien2_3-backend/index';
             async pobierzWpisy() {
                 this.wpisy = await dzien2_3_backend.odczytaj_wpisy();
             }
+        },
+        async mounted() {
+            this.pobierzWpisy();
         }
     }
 </script>
